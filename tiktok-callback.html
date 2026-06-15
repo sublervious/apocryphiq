@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apocryphiq — Connecting to TikTok…</title>
+<style>
+  body { font-family: Georgia, serif; background: linear-gradient(135deg,#1e0f32,#080610);
+         color: #c4a7f5; display: flex; align-items: center; justify-content: center;
+         height: 100vh; margin: 0; text-align: center; }
+  .box { max-width: 460px; padding: 0 24px; }
+  h2 { color: #fff; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h2>Connecting to Apocryphiq…</h2>
+  <p id="msg">Returning you to the app. You can close this tab once it says connected.</p>
+</div>
+<script>
+  (function () {
+    var qs = window.location.search || '';
+    var target = 'http://127.0.0.1:8210/callback/' + qs;
+    if (qs.indexOf('code=') !== -1 || qs.indexOf('error=') !== -1) {
+      window.location.replace(target);
+    } else {
+      document.getElementById('msg').textContent =
+        'No authorization code found. Please start the connection again from Apocryphiq.';
+    }
+  })();
+</script>
+</body>
+</html>
